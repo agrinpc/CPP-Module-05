@@ -8,6 +8,7 @@ OBJDIR = .
 
 FILES		=	main \
 				Bureaucrat \
+				Form \
 
 SRC			= $(FILES:=.cpp)
 OBJ			= $(addprefix $(OBJDIR)/, $(FILES:=.o))

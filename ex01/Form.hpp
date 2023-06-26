@@ -2,8 +2,7 @@
 # define FORM_H
 
 # include <iostream>
-# include <stdexcept>
-# include "./Bureaucrat.hpp"
+# include "Bureaucrat.hpp"
 
 class Form
 {
@@ -22,11 +21,28 @@ class Form
 		Form &operator=(Form const &f);
 
 		std::string const	getName(void);
-		int	const			getGradeSign(void);
-		int	const			getGradeExec(void);
-		bool				getSignStat(void);
+		int		getGradeSign(void);
+		int		getGradeExec(void);
+		bool	getSignStat(void);
 
-		void	beSigned(Bureaucrat &b);
+		int		beSigned(Bureaucrat &b);
+		
+		class GradeTooHighException: public std::exception
+		{
+			public:
+				virtual const char* what() const throw()
+				{ 
+					return ("Form::GradeTooHighException"); 
+				}
+		};
+		class GradeTooLowException: public std::exception 
+		{
+			public:
+				virtual const char* what() const throw()
+				{ 
+					return ("Form::GradeTooLowException"); 
+				}
+		};
 };
 
 std::ostream &operator<<(std::ostream &o, Form &f);

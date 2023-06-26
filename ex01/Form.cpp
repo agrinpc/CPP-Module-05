@@ -2,16 +2,16 @@
 
 Form::Form(void) : _name("NoMan"), _is_signed(false), _grade_sign(150), _grade_exec(150) {return;}
 
-Form::Form(std::string const name, int grade_sign, int grade_exec) : _name(name), _is_signed(false), _grade_sign(150), _grade_exec(150)
+Form::Form(std::string const name, int grade_sign, int grade_exec) : _name(name), _is_signed(false), _grade_sign(grade_sign), _grade_exec(grade_exec)
 {
 	if (grade_sign < 1)
-		throw std::invalid_argument("Form::GradeTooHighException");
+		throw Form::GradeTooHighException();
 	if (grade_sign > 150)
-		throw std::invalid_argument("Form::GradeTooLowException");
+		throw Form::GradeTooLowException();
 	if (grade_exec < 1)
-		throw std::invalid_argument("Form::GradeTooHighException");
+		throw Form::GradeTooHighException();
 	if (grade_exec > 150)
-		throw std::invalid_argument("Form::GradeTooLowException");
+		throw Form::GradeTooLowException();
 	return;
 }
 
@@ -31,12 +31,12 @@ std::string const Form::getName(void)
 	return (this->_name);
 }
 
-int const	Form::getGradeSign(void)
+int	Form::getGradeSign(void)
 {
 	return (this->_grade_sign);
 }
 
-int const	Form::getGradeExec(void)
+int	Form::getGradeExec(void)
 {
 	return (this->_grade_exec);
 }
@@ -46,13 +46,16 @@ bool	Form::getSignStat(void)
 	return (this->_is_signed);
 }
 
-void	Form::beSigned(Bureaucrat &b)
-{
+int	Form::beSigned(Bureaucrat &b)
+{	if (this->_is_signed == true)
+		return (1);
 	if (b.getGrade() <= this->getGradeSign())
+	{
 		this->_is_signed = true;
-	else
-		throw std::invalid_argument("Form::GradeTooLowException");
-	b.signForm(*this);
+		return (0);
+	}
+	std::cout << b.getName() << " couldn’t sign " << this->getName() << " because it has a lower Grade " << std::endl;
+	throw Form::GradeTooLowException();
 }
 
 std::ostream &operator<<(std::ostream &o, Form &b)

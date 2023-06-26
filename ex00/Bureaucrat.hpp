@@ -2,7 +2,6 @@
 # define BUREAUCRAT_H
 
 # include <iostream>
-# include <stdexcept>
 
 class Bureaucrat
 {
@@ -23,6 +22,23 @@ class Bureaucrat
 
 		void	increaseGrade(void);
 		void	decreaseGrade(void);
+
+		class GradeTooHighException: public std::exception
+		{
+			public:
+				virtual const char* what() const throw()
+				{ 
+					return ("Bureaucrat::GradeTooHighException"); 
+				}
+		};
+		class GradeTooLowException: public std::exception 
+		{
+			public:
+				virtual const char* what() const throw()
+				{ 
+					return ("Bureaucrat::GradeTooLowException"); 
+				}
+		};
 };
 
 std::ostream &operator<<(std::ostream &o, Bureaucrat &b);

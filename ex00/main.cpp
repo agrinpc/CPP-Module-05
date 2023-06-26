@@ -1,4 +1,5 @@
 #include "./Bureaucrat.hpp"
+#include "./Form.hpp"
 
 int	main(void)
 {
@@ -8,7 +9,7 @@ int	main(void)
 
 	try
 	{
-		Bureaucrat c("Second", 0);
+		Bureaucrat c("Second", -100);
 	}
 	catch(const std::exception& e)
 	{

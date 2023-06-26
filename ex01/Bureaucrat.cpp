@@ -1,13 +1,14 @@
 #include "./Bureaucrat.hpp"
+#include "./Form.hpp"
 
 Bureaucrat::Bureaucrat(void) : _grade(150), _name("NoMan") {return;}
 
 Bureaucrat::Bureaucrat(std::string const name, int grade) : _name(name)
 {
 	if (grade < 1)
-		throw std::invalid_argument("Bureaucrat::GradeTooHighException");
+		throw Bureaucrat::GradeTooHighException();
 	if (grade > 150)
-		throw std::invalid_argument("Bureaucrat::GradeTooLowException");
+		throw Bureaucrat::GradeTooLowException();
 	this->_grade = grade;
 	return;
 }
@@ -36,7 +37,7 @@ int	Bureaucrat::getGrade(void)
 void	Bureaucrat::increaseGrade(void)
 {
 	if (this->_grade == 1)
-		throw std::invalid_argument("Bureaucrat::GradeTooHighException");
+		throw Bureaucrat::GradeTooHighException();
 	else
 		this->_grade--;
 	return;
@@ -45,7 +46,7 @@ void	Bureaucrat::increaseGrade(void)
 void	Bureaucrat::decreaseGrade(void)
 {
 	if (this->_grade == 150)
-		throw std::invalid_argument("Bureaucrat::GradeTooLowException");
+		throw Bureaucrat::GradeTooLowException();
 	else
 		this->_grade++;
 	return;
@@ -53,10 +54,14 @@ void	Bureaucrat::decreaseGrade(void)
 
 void	Bureaucrat::signForm(Form &f)
 {
-	if (this->getGrade() <= f.getGradeSign())
-		std::cout << this->getName() << " couldn’t sign " << f.getName() << " because it has a lower Grade" << std::endl;
-	else
+	int	ret;
+	ret = f.beSigned(*this);
+	if (ret == 1)
+		std::cout << this->getName() << " couldn’t sign " << f.getName() << " because it is already signed" << std::endl;
+	else if (ret == 0)
 		std::cout << this->getName() << " signed " << f.getName() << std::endl;
+	
+	
 
 }
 
