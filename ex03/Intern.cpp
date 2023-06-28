@@ -32,5 +32,5 @@ AForm *Intern::makeForm(std::string name, std::string target)
 		}
 	}
 	std::cout << name << ": no such a form exists" << std::endl;
-	return (nullptr);	
+	return (nullptr);
 }
