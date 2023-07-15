@@ -7,7 +7,7 @@
 
 int	main(void)
 {
-	Bureaucrat bureaucrat("Evaluator", 10);
+	Bureaucrat bureaucrat("Evaluator", 6);
 	PresidentialPardonForm	f1("Milad");
 	ShrubberyCreationForm	f2("42Heilbronn");
 	RobotomyRequestForm		f3("Scholarship Form");

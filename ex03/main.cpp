@@ -11,9 +11,10 @@ int	main(void)
 	Intern					i;
 	AForm					*f1 = i.makeForm("robotomy", "Scholarship");
 	AForm					*f2 = i.makeForm("presidential", "Milad");
-	AForm					*f3 = i.makeForm("shurbbery", "42Heilbronn");
+	AForm					*f3 = i.makeForm("shrubbery", "42Heilbronn");
 	AForm					*f4 = i.makeForm("wrong_form", "wrong_target");
 
+	std::cout << std::endl;
 	if (f1)
 	{
 		bureaucrat.signForm(*f1);

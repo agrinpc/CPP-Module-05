@@ -54,7 +54,6 @@ int	AForm::beSigned(Bureaucrat &b)
 		this->_is_signed = true;
 		return (0);
 	}
-	std::cout << b.getName() << " couldn’t sign " << this->getName() << " because it has a lower Grade " << std::endl;
 	throw AForm::GradeTooLowException();
 }
 

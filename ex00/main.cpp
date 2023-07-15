@@ -1,9 +1,8 @@
 #include "./Bureaucrat.hpp"
-#include "./Form.hpp"
 
 int	main(void)
 {
-	Bureaucrat a("First", 48);
+	Bureaucrat a("First", 55);
 	Bureaucrat b;
 	Bureaucrat d(a);
 

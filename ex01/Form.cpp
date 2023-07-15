@@ -47,15 +47,16 @@ bool	Form::getSignStat(void)
 }
 
 int	Form::beSigned(Bureaucrat &b)
-{	if (this->_is_signed == true)
+{
+	if (this->_is_signed == true)
 		return (1);
 	if (b.getGrade() <= this->getGradeSign())
 	{
 		this->_is_signed = true;
 		return (0);
 	}
-	std::cout << b.getName() << " couldn’t sign " << this->getName() << " because it has a lower Grade " << std::endl;
 	throw Form::GradeTooLowException();
+	return (2);
 }
 
 std::ostream &operator<<(std::ostream &o, Form &b)
